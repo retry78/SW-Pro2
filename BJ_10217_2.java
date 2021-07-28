@@ -74,7 +74,7 @@ public class Main{
 		while (t>1){
 			t/=2;
 			tree[t] = tree[t*2] + tree[t*2+1];
-		}
+		} 
 	}
 
 }
