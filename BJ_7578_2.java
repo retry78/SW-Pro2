@@ -54,24 +54,26 @@ public class Main{
 	}
 	
 	static long sum(int idx1,int idx2){
-		int t = ts+idx1-1;
-		int s = ts+idx2-1;
+		int s = ts+idx1-1;
+		int e = ts+idx2-1;
 		long count = 0;
-		while (t<=s){
-			if (t%2 == 1) count += tree[t++];
-			if (s%2 == 0) count += tree[s--];
-			t/=2;
+		while (s<=e){
+                                      // 시작점이 2개 노드를 포함하지 않으면, 해당 값을 계산에 포함하고 시작점을 +1 해주고,
+                                      // 종료점이 2개 노드를 포함하지 않으면, 해당 값을 계산에 포함하고 종료점을 -1 해준다.
+			if (s%2 == 1) count += tree[s++];
+			if (e%2 == 0) count += tree[e--];
 			s/=2;
+			e/=2;
 		}
 		return count;
 	}
 	
 	static void update(int idx,int num){
-		int st = ts + idx -1;
-		tree[st] = num;
-		while (st>1){
-			st/=2;
-			tree[st] = tree[st*2] + tree[st*2+1];
+		int t = ts + idx -1;
+		tree[t] = num;
+		while (t>1){
+			t/=2;
+			tree[t] = tree[t*2] + tree[t*2+1];
 		}
 	}
 
